@@ -183,7 +183,11 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
-.template-card {
+
+/* Kartu untuk satu template (sekarang menjadi link) */
+a.template-card {
+  display: block; /* Agar tag <a> bisa diberi style seperti div */
+  color: var(--text-dark); /* Menghilangkan warna biru default link */
   background-color: #fff;
   border: 1px solid var(--border-light);
   border-radius: 1rem;
@@ -191,158 +195,33 @@ body {
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.template-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow);
+.template-card .card-body .card-price .old-price {
+  font-size: 0.9rem;
+  color: #777;
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+  font-weight: 400;
+}
+.template-card .card-body .card-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
 }
 .template-card .card-image {
-  position: relative;
+  height: 300px; /* Atur tinggi yang diinginkan untuk desktop (coba angka lain jika perlu) /
+overflow: hidden; / Pastikan gambar tidak keluar dari batas */
 }
+
 .template-card .card-image img {
   width: 100%;
-  height: auto;
-  display: block;
-}
-.template-card .card-label {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--primary);
-  color: #fff;
-  padding: 0.3rem 0.8rem;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.template-card .card-body {
-  padding: 1.5rem;
-  text-align: center;
-}
-.template-card .card-body h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-/* [BARU] Style untuk wrapper tombol di kartu */
-.template-card .card-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem; /* Jarak antar tombol */
-}
-/* [UPDATE] Tombol Preview (Gaya Outline) */
-.template-card .btn-preview {
-  flex: 1; /* Membuat tombol mengisi ruang yang tersedia */
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  border-radius: 50px;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.3s;
-}
-
-.template-card .btn-preview:hover {
-  background-color: var(--primary);
-  color: #fff;
-}
-
-/* [BARU] Tombol Pesan (Gaya Solid) */
-.template-card .btn-order {
-  flex: 1; /* Membuat tombol mengisi ruang yang tersedia */
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--primary);
-  background-color: var(--primary);
-  color: #fff;
-  border-radius: 50px;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.3s;
-}
-
-.template-card .btn-order:hover {
-  opacity: 0.8;
-}
-/* === KOMPONEN: MODAL / POP-UP === */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: none; /* Awalnya tersembunyi */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  object-fit: cover; /* Gambar akan mengisi area dan dipotong jika perlu /
+display: block; / Tetap pertahankan ini */
 }
 
-.modal {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  position: relative;
-  transform: translateY(-50px);
-  transition: transform 0.3s ease-out;
-}
-
-/* Style saat modal aktif */
-.modal-overlay.active {
-  display: flex;
-}
-.modal-overlay.active .modal {
-  transform: translateY(0);
-}
-
-.modal .close-modal {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  color: #aaa;
-  background: none;
-  cursor: pointer;
-}
-.modal .close-modal:hover {
-  color: var(--text-dark);
-}
-
-.modal h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-.modal p {
-  margin-bottom: 2rem;
-}
-
-.modal-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.modal-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  color: #fff;
-  transition: opacity 0.2s;
-}
-.modal-btn:hover {
-  opacity: 0.85;
-}
-.modal-btn.whatsapp {
-  background-color: #25d366;
-}
-.modal-btn.shopee {
-  background-color: #ee4d2d;
+a.template-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow);
 }
 
 /* ============================================== */
@@ -585,7 +464,105 @@ body {
   font-size: 0.9rem;
   color: var(--text-dark);
 }
+/* === HALAMAN DETAIL PRODUK === */
+.detail-page {
+  padding-top: 4.5rem; /* Hanya padding atas untuk jarak dari navbar */
+  padding-bottom: 8rem; /* Padding bawah besar untuk memberi ruang dari action bar */
+}
 
+/* Slider Gambar Produk */
+.product-slider .slider-container {
+  max-width: 100%; /* Slider memenuhi layar */
+  border-radius: 0;
+  box-shadow: none;
+}
+.product-slider .slide img {
+  width: 100%;
+  height: 60vh; /* Atur tinggi gambar slider */
+  object-fit: cover;
+}
+.product-slider .slider-dots {
+  bottom: 1rem;
+}
+
+/* Info Produk */
+.product-info {
+  padding: 2rem 7%;
+}
+.product-info h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+}
+.product-info .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 1rem 0;
+}
+.product-info .price .old-price {
+  font-size: 1rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+  font-weight: 400;
+}
+.product-info .description {
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+.product-info .description h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.product-info .feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.2rem !important;
+}
+.product-info .feature-list i {
+  color: var(--primary);
+}
+
+/* Bar Aksi di Bawah */
+.detail-actions-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  padding: 0.75rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 998;
+}
+.detail-actions-bar .action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* Bagian untuk konsultasi & preview */
+  gap: 0.25rem;
+  color: var(--text-dark);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.detail-actions-bar .action-btn.primary {
+  flex: 1.5; /* Bagian tombol pesan lebih besar */
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  padding: 0.5rem;
+}
+.detail-actions-bar .action-btn i {
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
 /* ============================================== */
 /* === RESPONSIVE (DISATUKAN DI PALING BAWAH) === */
 /* ============================================== */
@@ -648,13 +625,23 @@ body {
   /* Keunggulan */
   .feature-item,
   .feature-item.reverse {
-    grid-template-columns: 1fr;
-    text-align: center;
+    grid-template-columns: 1fr; /* Selalu jadi 1 kolom */
+    gap: 2rem; /* Atur ulang jarak vertikal di mobile */
   }
+
+  /* [FIX] Paksa gambar untuk selalu di urutan pertama (atas) di mobile */
+  .feature-item .feature-image,
+  .feature-item.reverse .feature-image {
+    order: 1;
+  }
+
+  /* [FIX] Paksa teks untuk selalu di urutan kedua (bawah) di mobile */
   .feature-item .feature-content,
   .feature-item.reverse .feature-content {
-    text-align: left; /* Sesuai kodemu */
+    order: 2;
+    text-align: left; /* Buat teks jadi ke tengah agar rapi */
   }
+
   .feature-item .feature-content h3 {
     font-size: 1.8rem;
   }
@@ -664,11 +651,39 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-  .template-card .btn-preview,
-  .template-card .btn-order {
-    font-size: 0.8rem; /* Perkecil ukuran teks tombol */
-    padding: 0.6rem 0.5rem; /* Perkecil area padding tombol */
-    font-weight: 500;
+
+  a.template-card {
+    display: flex; /* Ubah jadi flex container */
+    flex-direction: column; /* Susun elemen di dalamnya ke bawah */
+  }
+
+  a.template-card .card-image {
+    height: 200px; /* Atur tinggi yang diinginkan (coba angka lain jika perlu) /
+overflow: hidden; / Pastikan gambar tidak keluar dari batas */
+  }
+
+  a.template-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar akan mengisi area dan dipotong jika perlu */
+  }
+
+  a.template-card .card-body {
+    padding: 1rem;
+    text-align: left; /* Tengahkan teks di mobile */
+  }
+
+  a.template-card .card-body h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  a.template-card .card-body .card-price {
+    font-size: 0.9rem;
+  }
+
+  a.template-card .card-body .card-price .old-price {
+    font-size: 0.8rem;
   }
 
   /* Footer */
@@ -681,87 +696,5 @@ body {
   }
   .footer-column .socials {
     justify-content: center;
-  }
-  /* === KOMPONEN: MODAL / POP-UP === */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none; /* Awalnya tersembunyi */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .modal {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-    transform: translateY(-50px);
-    transition: transform 0.3s ease-out;
-  }
-
-  /* Style saat modal aktif */
-  .modal-overlay.active {
-    display: flex;
-  }
-  .modal-overlay.active .modal {
-    transform: translateY(0);
-  }
-
-  .modal .close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    color: #aaa;
-    background: none;
-    cursor: pointer;
-  }
-  .modal .close-modal:hover {
-    color: var(--text-dark);
-  }
-
-  .modal h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-  }
-  .modal p {
-    margin-bottom: 2rem;
-  }
-
-  .modal-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .modal-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    color: #fff;
-    transition: opacity 0.2s;
-  }
-  .modal-btn:hover {
-    opacity: 0.85;
-  }
-  .modal-btn.whatsapp {
-    background-color: #25d366;
-  }
-  .modal-btn.shopee {
-    background-color: #ee4d2d;
   }
 }

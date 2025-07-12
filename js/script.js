@@ -9,51 +9,39 @@ document.addEventListener("DOMContentLoaded", () => {
       // Urutan pemanggilan penting
       this.initMobileMenu();
       this.initHeroSlider();
+      this.initDetailSlider();
       this.initFaqAccordion();
-      this.initOrderModal();
     },
-    initOrderModal() {
-      const orderButtons = document.querySelectorAll(".btn-order");
-      const modalOverlay = document.getElementById("order-modal-overlay");
-      const closeModalBtn = document.getElementById("close-modal-btn");
+    initDetailSlider() {
+      const slider = document.querySelector(".product-slider");
+      if (!slider) return; // Hanya berjalan jika ada slider produk
 
-      // Elemen link di dalam modal
-      const modalWaLink = document.getElementById("modal-wa-link");
-      const modalShopeeLink = document.getElementById("modal-shopee-link");
+      const wrapper = slider.querySelector(".slider-wrapper");
+      const dotsContainer = slider.querySelector(".slider-dots");
+      const slides = slider.querySelectorAll(".slide");
+      let currentIndex = 0;
+      const slideCount = slides.length;
 
-      if (!modalOverlay) return; // Keluar jika tidak di halaman yang ada modal
+      function goToSlide(index) {
+        currentIndex = (index + slideCount) % slideCount;
+        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+      }
 
-      // Fungsi untuk membuka modal
-      const openModal = (e) => {
-        const button = e.currentTarget;
-        const waLink = button.dataset.waLink;
-        const shopeeLink = button.dataset.shopeeLink;
-
-        // Update link di dalam modal
-        modalWaLink.href = waLink;
-        modalShopeeLink.href = shopeeLink;
-
-        modalOverlay.classList.add("active");
-      };
-
-      // Fungsi untuk menutup modal
-      const closeModal = () => {
-        modalOverlay.classList.remove("active");
-      };
-
-      // Tambahkan event listener ke setiap tombol "Pesan"
-      orderButtons.forEach((button) => {
-        button.addEventListener("click", openModal);
-      });
-
-      // Event listener untuk tombol close dan overlay
-      closeModalBtn.addEventListener("click", closeModal);
-      modalOverlay.addEventListener("click", (e) => {
-        // Hanya tutup jika klik di overlay, bukan di modalnya
-        if (e.target === modalOverlay) {
-          closeModal();
+      function updateDots() {
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < slideCount; i++) {
+          const dot = document.createElement("div");
+          dot.classList.add("dot");
+          if (i === currentIndex) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(i));
+          dotsContainer.appendChild(dot);
         }
-      });
+      }
+
+      if (slideCount > 0) {
+        goToSlide(0);
+      }
     },
     initFaqAccordion() {
       const accordionItems = document.querySelectorAll(".accordion-item");
