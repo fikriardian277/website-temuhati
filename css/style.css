@@ -516,7 +516,10 @@ a.template-card:hover {
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
-
+.product-info .feature-list {
+  list-style: none;
+  padding-left: 0;
+}
 .product-info .feature-list li {
   display: flex;
   align-items: center;
