@@ -134,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         prevTranslate = currentTranslate;
         setWrapperPosition();
         updateDots();
+        startAutoSlide();
       }
 
       function setWrapperPosition() {
