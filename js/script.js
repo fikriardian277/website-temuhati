@@ -10,6 +10,50 @@ document.addEventListener("DOMContentLoaded", () => {
       this.initMobileMenu();
       this.initHeroSlider();
       this.initFaqAccordion();
+      this.initOrderModal();
+    },
+    initOrderModal() {
+      const orderButtons = document.querySelectorAll(".btn-order");
+      const modalOverlay = document.getElementById("order-modal-overlay");
+      const closeModalBtn = document.getElementById("close-modal-btn");
+
+      // Elemen link di dalam modal
+      const modalWaLink = document.getElementById("modal-wa-link");
+      const modalShopeeLink = document.getElementById("modal-shopee-link");
+
+      if (!modalOverlay) return; // Keluar jika tidak di halaman yang ada modal
+
+      // Fungsi untuk membuka modal
+      const openModal = (e) => {
+        const button = e.currentTarget;
+        const waLink = button.dataset.waLink;
+        const shopeeLink = button.dataset.shopeeLink;
+
+        // Update link di dalam modal
+        modalWaLink.href = waLink;
+        modalShopeeLink.href = shopeeLink;
+
+        modalOverlay.classList.add("active");
+      };
+
+      // Fungsi untuk menutup modal
+      const closeModal = () => {
+        modalOverlay.classList.remove("active");
+      };
+
+      // Tambahkan event listener ke setiap tombol "Pesan"
+      orderButtons.forEach((button) => {
+        button.addEventListener("click", openModal);
+      });
+
+      // Event listener untuk tombol close dan overlay
+      closeModalBtn.addEventListener("click", closeModal);
+      modalOverlay.addEventListener("click", (e) => {
+        // Hanya tutup jika klik di overlay, bukan di modalnya
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
     },
     initFaqAccordion() {
       const accordionItems = document.querySelectorAll(".accordion-item");

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title-tag">Undangan Pernikahan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&family=Lora:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link id="favicon" rel="icon" href="" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="background-music" loop></audio>
+    <section id="hero-cover">
+      <div id="hero-bg" class="hero-background"></div>
+      <div class="hero-content">
+        <p>Undangan Pernikahan</p>
+        <h1>
+          <span id="cover-groom-name"></span>
+          <span class="ampersand">&</span>
+          <span id="cover-bride-name"></span>
+        </h1>
+        <div class="guest-info">
+          <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
+          <p class="guest-name" id="guest-name-placeholder">Tamu Undangan</p>
+        </div>
+        <a href="#" id="open-invitation" class="cta-link">Buka Undangan</a>
+      </div>
+    </section>
+
+    <main id="main-content" class="hidden">
+      <section id="the-vow">
+        <div id="vow-bg" class="vow-background"></div>
+        <div class="vow-container">
+          <div class="vow-content">
+            <h2 id="vow-title"></h2>
+            <hr class="separator-line" />
+            <p id="vow-text"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="profiles">
+        <div class="profiles-container">
+          <h2>The Couple</h2>
+          <div class="profile-grid">
+            <div class="profile-entry groom">
+              <div class="profile-card-content">
+                <div class="profile-photo">
+                  <img id="groom-photo" src="" alt="Foto Mempelai Pria" />
+                </div>
+                <div class="profile-details">
+                  <h3 id="groom-fullname"></h3>
+                  <hr class="details-separator" />
+                  <p id="groom-parents"></p>
+                  <a
+                    id="groom-social"
+                    href="#"
+                    target="_blank"
+                    class="social-link"
+                  >
+                    <i class="fab fa-instagram"></i> Instagram
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="profile-entry bride">
+              <div class="profile-card-content">
+                <div class="profile-photo">
+                  <img id="bride-photo" src="" alt="Foto Mempelai Wanita" />
+                </div>
+                <div class="profile-details">
+                  <h3 id="bride-fullname"></h3>
+                  <hr class="details-separator" />
+                  <p id="bride-parents"></p>
+                  <a
+                    id="bride-social"
+                    href="#"
+                    target="_blank"
+                    class="social-link"
+                  >
+                    <i class="fab fa-instagram"></i> Instagram
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="event-details">
+        <div class="event-container">
+          <h2>Save The Date</h2>
+          <div class="countdown-timer">
+            <div class="countdown-item">
+              <span id="days">00</span>
+              <p>Hari</p>
+            </div>
+            <div class="countdown-item">
+              <span id="hours">00</span>
+              <p>Jam</p>
+            </div>
+            <div class="countdown-item">
+              <span id="minutes">00</span>
+              <p>Menit</p>
+            </div>
+            <div class="countdown-item">
+              <span id="seconds">00</span>
+              <p>Detik</p>
+            </div>
+          </div>
+          <div id="event-panel-container" class="event-panel"></div>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="gallery-container">
+          <h2>Our Moments</h2>
+          <div id="gallery-grid-container" class="gallery-grid"></div>
+        </div>
+      </section>
+
+      <section id="wedding-gift">
+        <div class="gift-container">
+          <h2>Tanda Kasih</h2>
+          <p id="gift-intro" class="gift-intro"></p>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-header">
+                <span>Kirim Hadiah</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div id="gift-items-container" class="accordion-content"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="guestbook">
+        <div class="guestbook-container">
+          <h2>Ucapan & Doa</h2>
+          <form id="comment-form">
+            <div class="form-group">
+              <label for="name">Nama</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="comment">Tulis Ucapan</label>
+              <textarea
+                id="comment"
+                name="comment"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label>Konfirmasi Kehadiran</label>
+              <div class="rsvp-buttons">
+                <button
+                  type="button"
+                  class="rsvp-option active"
+                  data-value="Hadir"
+                >
+                  <i class="fas fa-check-circle"></i> Akan Hadir
+                </button>
+                <button
+                  type="button"
+                  class="rsvp-option"
+                  data-value="Berhalangan"
+                >
+                  <i class="fas fa-times-circle"></i> Berhalangan
+                </button>
+              </div>
+              <input
+                type="hidden"
+                name="attendance"
+                id="attendance"
+                value="Hadir"
+              />
+            </div>
+            <button type="submit" class="submit-button">
+              Kirim Ucapan <span class="arrow">→</span>
+            </button>
+          </form>
+          <hr class="guestbook-divider" />
+          <div id="comment-list-container">
+            <div id="comment-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="closing">
+        <div class="closing-content">
+          <p id="closing-text" class="ucapan-terima-kasih"></p>
+          <h2 id="closing-couple-names" class="closing-couple-names"></h2>
+        </div>
+      </section>
+    </main>
+
+    <footer class="hidden">
+      <div class="socials">
+        <a id="footer-instagram" href="#" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <p class="credit" id="footer-credit"></p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">×</span>
+      <img class="lightbox-content" id="lightbox-img" />
+    </div>
+
+    <a id="music-toggle-btn" class="music-toggle-btn hidden">
+      <i class="fas fa-compact-disc"></i>
+    </a>
+
+    <script src="script.js"></script>
+  </body>
+</html>

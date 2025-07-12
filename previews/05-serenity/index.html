@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Ardi & Rania Wedding</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Quicksand:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="background-music" loop></audio>
+
+    <div id="invitation-cover">
+      <div id="guest-display" class="guest-display-style">
+        <i class="fas fa-feather-pointed"></i>
+        <div class="guest-text">
+          <p>Kepada Yth.</p>
+          <h2 id="guest-name-placeholder">Nama Tamu</h2>
+        </div>
+      </div>
+      <button id="open-invitation-btn">
+        <i class="far fa-envelope-open"></i> Buka Undangan
+      </button>
+    </div>
+
+    <div id="main-content" style="display: none">
+      <div class="parallax-overlay"></div>
+
+      <section id="hero">
+        <p class="intro-text" id="hero-intro-text"></p>
+        <h1 id="hero-couple-names"></h1>
+        <p class="hero-date" id="hero-date"></p>
+      </section>
+
+      <main id="content">
+        <section id="quote" class="content-section">
+          <div class="quote-content">
+            <blockquote id="quote-text"></blockquote>
+            <cite id="quote-cite"></cite>
+          </div>
+        </section>
+
+        <section id="couple" class="content-section">
+          <h2>The Beloved Couple</h2>
+          <div class="interactive-stack-container">
+            <div class="couple-card bride">
+              <img id="bride-photo" src="" alt="Foto Mempelai Wanita" />
+              <a
+                id="bride-instagram"
+                href="#"
+                target="_blank"
+                class="couple-social-link"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+            <div class="couple-card groom is-active">
+              <img id="groom-photo" src="" alt="Foto Mempelai Pria" />
+              <a
+                id="groom-instagram"
+                href="#"
+                target="_blank"
+                class="couple-social-link"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          <div class="couple-info-container">
+            <div class="person-info">
+              <h3 id="groom-fullname"></h3>
+              <p id="groom-parents"></p>
+            </div>
+            <div class="couple-separator">&</div>
+            <div class="person-info">
+              <h3 id="bride-fullname"></h3>
+              <p id="bride-parents"></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="event" class="content-section">
+          <h2>Save The Date</h2>
+          <div id="countdown">
+            <div class="countdown-item">
+              <span id="days">00</span>
+              <p>Days</p>
+            </div>
+            <div class="countdown-item">
+              <span id="hours">00</span>
+              <p>Hours</p>
+            </div>
+            <div class="countdown-item">
+              <span id="minutes">00</span>
+              <p>Minutes</p>
+            </div>
+            <div class="countdown-item">
+              <span id="seconds">00</span>
+              <p>Seconds</p>
+            </div>
+          </div>
+          <div class="event-container" id="event-container"></div>
+        </section>
+
+        <section id="story" class="content-section">
+          <h2>Our Love Story</h2>
+          <div class="timeline-container" id="timeline-container"></div>
+        </section>
+
+        <section id="gallery" class="content-section">
+          <h2>Our Moments</h2>
+          <div class="filmstrip-container">
+            <div class="filmstrip-track" id="gallery-track"></div>
+          </div>
+        </section>
+
+        <section id="rsvp" class="content-section">
+          <h2>Confirm Your Presence</h2>
+          <p class="rsvp-subheading">
+            Your presence and prayers are the most meaningful gifts for us.
+            Please confirm your attendance below.
+          </p>
+          <form id="rsvp-form" class="rsvp-form">
+            <div class="form-group">
+              <label for="nama">Your Name</label>
+              <input
+                type="text"
+                id="nama"
+                name="Nama"
+                placeholder="Please write your name here"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Will you be attending?</label>
+              <div class="radio-group">
+                <label
+                  ><input
+                    type="radio"
+                    name="Kehadiran"
+                    value="Hadir"
+                    required
+                  />
+                  Yes, I'll be there</label
+                >
+                <label
+                  ><input type="radio" name="Kehadiran" value="Tidak Hadir" />
+                  Sorry, I can't make it</label
+                >
+              </div>
+            </div>
+            <div
+              class="form-group"
+              id="jumlah-tamu-group"
+              style="display: none"
+            >
+              <label for="jumlah">Number of Guests</label>
+              <input
+                type="number"
+                id="jumlah"
+                name="Jumlah"
+                min="1"
+                value="1"
+              />
+            </div>
+            <div class="form-group">
+              <label for="ucapan">Wishes & Prayers</label>
+              <textarea
+                id="ucapan"
+                name="Ucapan"
+                rows="4"
+                placeholder="Share your wishes for us..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn submit-btn">
+              Send Confirmation
+            </button>
+            <div id="form-status"></div>
+          </form>
+          <div class="wishes-container">
+            <h3>Wishes</h3>
+            <div class="wishes-list" id="wishes-list">
+              <p class="loading-wishes">Loading wishes...</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="gift" class="content-section">
+          <h2>Wedding Gift</h2>
+          <p class="gift-intro" id="gift-intro"></p>
+          <div class="gift-options-container" id="gift-container"></div>
+        </section>
+
+        <section id="closing" class="content-section">
+          <div class="closing-content">
+            <p id="closing-text"></p>
+            <h3 id="closing-couple-names"></h3>
+          </div>
+        </section>
+      </main>
+
+      <footer id="page-footer">
+        <div class="socials">
+          <a
+            id="footer-instagram"
+            href="#"
+            target="_blank"
+            aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+        <p id="footer-credit" class="credit"></p>
+      </footer>
+    </div>
+
+    <div id="fixed-guest-display" class="guest-display-style">
+      <i class="fas fa-feather-pointed"></i>
+      <div class="guest-text">
+        <p>Kepada Yth.</p>
+        <h2 id="fixed-guest-name">Nama Tamu</h2>
+      </div>
+    </div>
+    <div id="music-toggle-btn">
+      <i class="fas fa-compact-disc"></i>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1341 @@
+/* =================================================================
+   1. PENGATURAN DASAR & VARIABEL (DNA DESAIN "NOCTURNE")
+================================================================= */
+:root {
+  --color-background: #121212;
+  --color-text: #eaeaea;
+  --color-accent: #d4af37;
+  --color-overlay: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.2) 60%,
+    transparent 100%
+  );
+  --font-heading: "Raleway", sans-serif;
+  --font-body: "Lora", serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow: hidden; /* Benar, di awal scroll dimatikan */
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading); /* Menyatukan semua heading ke Raleway */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 300; /* Default heading tipis */
+}
+
+/* =================================================================
+   2. HERO COVER (SAMPUL) - GAYA EDITORIAL BARU
+================================================================= */
+#hero-cover {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 4rem 4rem 6rem 2rem;
+  z-index: 100;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/images/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  transform: scale(1.1);
+  animation: slowZoomIn 15s ease-out forwards;
+}
+
+#hero-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay);
+  z-index: -1;
+}
+
+.hero-content {
+  text-align: left;
+  width: 100%;
+  animation: contentFadeUp 1.5s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.hero-content p {
+  font-family: var(--font-body); /* Menegaskan font body di sini */
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.hero-content h1 {
+  /* PENYESUAIAN: font-weight di sini meng-override aturan H1 global, membuatnya tebal. Ini tidak apa-apa jika memang disengaja. */
+  font-size: clamp(
+    2rem,
+    10vw,
+    3.5rem
+  ); /* Ukuran sudah kamu sesuaikan, saya kembalikan agar lebih besar */
+  font-weight: 700; /* BOLD, berbeda dari H1 lain */
+  line-height: 1.4;
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ampersand {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 10vw, 3.5rem);
+  color: var(--color-accent);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.guest-info {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1rem;
+}
+
+.guest-info .guest-name {
+  font-weight: 600; /* Menggunakan Raleway SemiBold */
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: 600; /* Menggunakan Raleway SemiBold */
+  letter-spacing: 1px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.cta-link:hover {
+  color: var(--color-accent);
+}
+
+.cta-link::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+
+.cta-link:hover::after {
+  transform: translateX(5px);
+}
+
+@keyframes contentFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slowZoomIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* =================================================================
+   3. ATURAN UNTUK LAYAR LEBIH BESAR (LAPTOP)
+================================================================= */
+@media (min-width: 768px) {
+  #hero-cover {
+    padding: 4rem;
+  }
+  .hero-content {
+    max-width: 600px;
+  }
+}
+
+/* =================================================================
+   4. SECTION: THE VOW (IKRAR KAMI)
+================================================================= */
+#the-vow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+/* Anda bisa salin dan timpa aturan lama dengan ini untuk memastikan */
+
+.vow-content h2 {
+  font-family: var(--font-heading); /* Memastikan font Raleway */
+  font-size: 0.9rem; /* << KEMBALI KE UKURAN KECIL */
+  color: var(--color-accent); /* << KEMBALI KE WARNA EMAS */
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.separator-line {
+  border: none;
+  height: 1px;
+  background-color: var(--color-accent);
+  width: 100px; /* << KEMBALI KE LEBAR 100px */
+  margin: 1rem 0; /* Jarak atas bawah */
+}
+
+.vow-background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-background);
+  background-image: url(assets/images/cover.jpg);
+  background-position: center;
+  z-index: 1;
+}
+
+.vow-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.vow-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.vow-content {
+  text-align: left;
+  max-width: 500px;
+}
+
+/* KUNCI ANIMASI 1: Tentukan state awal untuk semua elemen yang akan dianimasikan */
+.vow-content h2,
+.vow-content .separator-line,
+.vow-content p .highlight,
+.vow-content p .vow-line {
+  /* Tambahkan kelas .vow-line di HTML jika perlu */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* KUNCI ANIMASI 2: Tentukan state akhir dengan delay berbeda saat section terlihat */
+#the-vow.is-visible .vow-content h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+#the-vow.is-visible .vow-content .separator-line {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+/* === INI BAGIAN YANG HILANG === */
+#the-vow.is-visible .vow-content p .highlight {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+#the-vow.is-visible .vow-content p .vow-line {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+
+.highlight {
+  /* PENYESUAIAN: Komentar diperbaiki agar sesuai dengan variabel */
+  font-family: var(--font-heading); /* Raleway */
+  font-weight: 300;
+  font-size: clamp(3rem, 10vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+  display: block;
+  margin: 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .vow-content {
+    margin-left: auto;
+  }
+}
+
+/* =================================================================
+   5. KELAS BANTU & TRANSISI (YANG HILANG)
+================================================================= */
+.hidden {
+  display: none;
+}
+
+/* FIX: Menambahkan kelas ini agar transisi fade-out berfungsi */
+.fading-out {
+  transition: opacity 1s ease-out, visibility 1s ease-out;
+  opacity: 0;
+  visibility: hidden;
+}
+/* =================================================================
+   5. SECTION: PROFIL MEMPELAI (VERSI FINAL DENGAN PERBAIKAN)
+================================================================= */
+#profiles {
+  padding: 6rem 0;
+  overflow-x: hidden;
+}
+
+.profiles-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+#profiles h2 {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* KUNCI: Mendorong ke kanan */
+}
+
+#profiles h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin-top: 1rem;
+}
+
+.profile-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+}
+
+.profile-entry {
+  position: relative;
+  width: 80%;
+  /* FIX: opacity: 0 dihapus dari sini agar tidak konflik */
+}
+
+/* Efek Cahaya Tepi */
+.profile-entry::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  width: 150%;
+  background: radial-gradient(
+    circle at 0% 50%,
+    rgba(255, 255, 255, 0.24) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+.profile-entry.bride::before {
+  right: 0;
+  background: radial-gradient(
+    circle at 100% 50%,
+    rgba(255, 255, 255, 0.24) 0%,
+    transparent 70%
+  );
+}
+
+/* Posisi kartu di HP */
+.profile-entry.groom {
+  align-self: flex-start;
+}
+.profile-entry.bride {
+  align-self: flex-end;
+}
+
+/* --- LOGIKA ANIMASI (PERBAIKAN TOTAL) --- */
+
+/* State Awal sebelum Animasi */
+.profile-photo {
+  opacity: 0;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+.profile-entry.groom .profile-photo {
+  transform: translateX(-100px);
+}
+.profile-entry.bride .profile-photo {
+  transform: translateX(100px);
+}
+
+.profile-details > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* State Setelah Animasi (Saat .is-visible ditambahkan ke .profile-entry) */
+.profile-entry.is-visible .profile-photo {
+  opacity: 1;
+  transform: translateX(0);
+}
+.profile-entry.is-visible::before {
+  /* Cahaya juga ikut muncul */
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Delay untuk setiap elemen teks agar muncul bergantian SETELAH foto */
+.profile-entry.is-visible .profile-details h3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+.profile-entry.is-visible .profile-details .details-separator {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
+}
+.profile-entry.is-visible .profile-details p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.9s;
+}
+.profile-entry.is-visible .profile-details .social-link {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.1s;
+}
+
+/* Gaya lain-lain (tidak berubah) */
+.profile-photo img {
+  width: 100%;
+  display: block;
+}
+.profile-details {
+  margin-top: 1.5rem;
+}
+.profile-details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.details-separator {
+  border: none;
+  height: 1px;
+  background-color: var(--color-accent);
+  width: 80px;
+  margin: 0 0 1rem 0;
+}
+.profile-details p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+.social-link:hover {
+  opacity: 1;
+  color: var(--color-accent);
+}
+.profile-entry.bride .details-separator {
+  margin-left: auto;
+  margin-right: 0;
+}
+.profile-entry.bride .profile-details {
+  text-align: right;
+}
+
+/* --- ATURAN UNTUK DESKTOP --- */
+@media (min-width: 992px) {
+  /* ... (Aturan desktop sebelumnya sudah benar, kita copy-paste lagi untuk kelengkapan) ... */
+  #profiles h2 {
+    margin-bottom: 4rem;
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+  .profile-entry {
+    width: 100%;
+    align-self: auto; /* Reset alignment HP */
+  }
+
+  .profile-entry.bride {
+    /* Memindahkan teks ke kiri dan foto ke kanan */
+    grid-template-areas: "details photo";
+  }
+  .profile-entry .profile-photo,
+  .profile-entry .profile-details {
+    text-align: left; /* Teks selalu rata kiri di desktop */
+  }
+  .profile-entry.bride .details-separator {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+/* =================================================================
+   6. SECTION: DETAIL ACARA
+================================================================= */
+#event-details {
+  padding: 6rem 2rem;
+  position: relative;
+  background-color: var(--color-background);
+  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+}
+
+/* KUNCI ANIMASI 1: Tentukan state awal */
+#event-details h2,
+.countdown-timer,
+.event-photo,
+.event-block {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* KUNCI ANIMASI 2: Tentukan state akhir dengan delay berbeda */
+#event-details.is-visible h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+#event-details.is-visible .countdown-timer {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+#event-details.is-visible .event-photo {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+#event-details.is-visible .event-block:nth-of-type(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+#event-details.is-visible .event-block:nth-of-type(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1s;
+}
+
+/* Gaya lain-lain (tidak berubah) */
+.event-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+#event-details h2 {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#event-details h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin-top: 1rem;
+}
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+.countdown-item span {
+  font-family: "Lora", serif;
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+}
+.countdown-item p {
+  font-family: "Raleway", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+.event-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.event-photo {
+  overflow: hidden;
+}
+.event-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.3);
+  animation: kenBurnsEffect 20s ease-out forwards;
+}
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.event-block h3 {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+.event-block p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.event-block p i {
+  color: var(--color-accent);
+  margin-top: 5px;
+}
+.event-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+.event-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.event-cta-link:hover {
+  color: var(--color-accent);
+}
+.event-cta-link::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+.event-cta-link:hover::after {
+  transform: translateX(5px);
+}
+
+@media (min-width: 992px) {
+  .event-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+}
+/* =================================================================
+   7. SECTION: GALERI FOTO (DENGAN PERBAIKAN)
+================================================================= */
+#gallery {
+  padding: 6rem 2rem;
+  background-color: var(--color-background);
+}
+
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#gallery h2 {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#gallery h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin-top: 1rem;
+}
+
+/* KUNCI LAYOUT MASONRY */
+.gallery-grid {
+  column-count: 2; /* 2 kolom di HP */
+  column-gap: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+  break-inside: avoid;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* State awal animasi */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s;
+}
+
+/*
+*
+* FIX UTAMA ADA DI SINI:
+* Selector diubah dari '#gallery.is-visible .gallery-item' 
+* menjadi '.gallery-item.is-visible' agar cocok dengan JavaScript.
+*
+*/
+.gallery-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* EFEK HOVER */
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+.gallery-item::before {
+  content: "\f06e";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  color: white;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2;
+}
+.gallery-item:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.lightbox.visible {
+  display: flex;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  animation: zoomIn 0.5s ease-out;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- ATURAN DESKTOP --- */
+@media (min-width: 768px) {
+  .gallery-grid {
+    column-count: 3;
+  }
+}
+@media (min-width: 1200px) {
+  .gallery-grid {
+    column-count: 4;
+  }
+}
+/* =================================================================
+   8. SECTION: HADIAH (GAYA DROPDOWN SIMPLE)
+================================================================= */
+#wedding-gift h2 {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Mendorong ke kiri */
+  text-align: left;
+}
+
+#wedding-gift h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin-top: 1rem;
+}
+
+.gift-intro {
+  text-align: left; /* Rata kiri agar sejajar dengan judul */
+  max-width: 600px;
+  margin: -2rem 0 0.2rem 0; /* Atur jarak dari judul dan ke akordeon */
+  line-height: 1.8;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+#wedding-gift {
+  padding: 4rem 2rem 6rem 2rem; /* Jarak diperkecil */
+  position: relative;
+}
+
+.gift-container {
+  max-width: 500px; /* Dibuat lebih ramping */
+  margin: 0 auto;
+}
+
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  cursor: pointer;
+  color: var(--color-accent);
+}
+
+.accordion-header span {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 0.9rem; /* Tulisan kecil */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.accordion-header i {
+  transition: transform 0.4s ease;
+  opacity: 0.8;
+}
+
+.accordion-item.active .accordion-header i {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+.gift-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* KUNCI ANIMASI 1: Kondisi awal (transparan) */
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+/* TAMBAHKAN BLOK BARU INI */
+
+/* Saat akordeon aktif, buat semua item terlihat */
+.accordion-item.active .gift-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* KUNCI ANIMASI 2: Beri jeda waktu berbeda untuk setiap item */
+.accordion-item.active .gift-item:nth-child(1) {
+  transition-delay: 0.2s; /* Item pertama muncul setelah 0.2 detik */
+}
+
+.accordion-item.active .gift-item:nth-child(2) {
+  transition-delay: 0.3s; /* Item kedua muncul setelah 0.3 detik */
+}
+
+.accordion-item.active .gift-item:nth-child(3) {
+  transition-delay: 0.4s; /* Item ketiga muncul setelah 0.4 detik */
+}
+.account-name {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+  opacity: 0.7;
+}
+
+.account-number {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.icon-copy-button {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.icon-copy-button:hover {
+  opacity: 1;
+  color: var(--color-accent);
+}
+/* GANTI DENGAN KODE BARU INI */
+
+/* Animasi untuk Section Hadiah */
+#wedding-gift h2,
+.gift-intro,
+.accordion {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* Atur urutan muncul dengan transition-delay */
+#wedding-gift.is-visible h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s; /* Muncul pertama */
+}
+
+#wedding-gift.is-visible .gift-intro {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s; /* Muncul kedua */
+}
+
+#wedding-gift.is-visible .accordion {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s; /* Muncul terakhir */
+}
+/* =================================================================
+   9. SECTION: BUKU TAMU & RSVP
+================================================================= */
+#guestbook {
+  padding: 6rem 2rem;
+  background-color: var(--color-background);
+}
+
+.guestbook-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+#guestbook h2 {
+  /* Gaya rata kanan (melanjutkan pola zig-zag) */
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#guestbook h2::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin-top: 1rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.8rem 0;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.rsvp-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.rsvp-option {
+  flex-grow: 1;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-text);
+  padding: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: background-color 0.3s, border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.rsvp-option.active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-background);
+  font-weight: bold;
+}
+
+.submit-button {
+  /* Gaya konsisten dengan tombol lain */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.submit-button .arrow {
+  transition: transform 0.3s ease;
+}
+.submit-button:hover .arrow {
+  transform: translateX(5px);
+}
+
+.guestbook-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 1rem 0;
+}
+
+#comment-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px; /* Ruang untuk scrollbar */
+}
+.comment-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0;
+}
+.comment-item:last-child {
+  border-bottom: none;
+}
+.comment-author {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+.comment-text {
+  line-height: 1.7;
+}
+/* =================================================================
+   ANIMASI UNTUK SECTION BUKU TAMU
+================================================================= */
+
+/* 1. Atur kondisi awal elemen (transparan dan sedikit di bawah) */
+#guestbook h2,
+#comment-form,
+.guestbook-divider,
+#comment-list-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* 2. Atur kondisi akhir saat section terlihat (muncul berurutan) */
+#guestbook.is-visible h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s; /* Muncul pertama */
+}
+
+#guestbook.is-visible #comment-form {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s; /* Muncul kedua */
+}
+
+#guestbook.is-visible .guestbook-divider {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s; /* Muncul ketiga */
+}
+
+#guestbook.is-visible #comment-list-container {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s; /* Muncul terakhir */
+}
+/* =================================================================
+   10. SECTION: PENUTUP
+================================================================= */
+#closing {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Latar belakang foto terbaik pasangan */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("assets/images/prewedding-utama.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efek parallax sederhana */
+}
+
+.closing-content {
+  max-width: 650px;
+}
+
+.ucapan-terima-kasih {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.closing-couple-names {
+  font-family: "Lora", serif; /* Pakai Lora untuk kesan tanda tangan yang personal */
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 400;
+  text-transform: none; /* Tidak kapital */
+  letter-spacing: normal; /* Spasi normal */
+  color: var(--color-accent);
+}
+
+/* Animasi untuk Penutup */
+.ucapan-terima-kasih,
+.closing-couple-names {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+#closing.is-visible .ucapan-terima-kasih {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+#closing.is-visible .closing-couple-names {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+
+/* =================================================================
+   11. FOOTER
+================================================================= */
+footer {
+  padding: 2rem 1rem; /* Sedikit lebih tinggi agar tidak sempit */
+  background-color: var(--background-color);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+footer .socials {
+  margin-bottom: 1rem;
+}
+footer .socials a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+footer .socials a:hover {
+  color: #fff; /* Dibuat putih agar lebih kontras saat hover */
+}
+footer .credit {
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+footer .credit .fa-heart {
+  color: var(--background-color); /* Saya ambil warna dari footer lama */
+  margin: 0 0.25rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Pastikan animasi pulse ada jika sebelumnya belum ada */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* =================================================================
+   12. TOMBOL KONTROL MUSIK
+================================================================= */
+.music-toggle-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  width: 45px;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.music-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.music-toggle-btn .fa-compact-disc {
+  font-size: 1.5rem; /* Sedikit lebih besar agar terlihat jelas */
+  transition: transform 0.3s ease;
+}
+
+/* Saat musik berputar (kelas .playing ditambahkan oleh JS) */
+.music-toggle-btn.playing .fa-compact-disc {
+  /* Terapkan animasi berputar tanpa henti */
+  animation: spin 2s linear infinite;
+}
+/* Tambahkan ini di blok CSS Tombol Musik */
+.music-toggle-btn.hidden {
+  transform: scale(0);
+  opacity: 0;
+}

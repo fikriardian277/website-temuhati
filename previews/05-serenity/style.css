@@ -1,0 +1,1306 @@
+/* Pengaturan Dasar & Variabel */
+:root {
+  --font-heading: "Quicksand", sans-serif;
+  --font-body: "Open Sans", sans-serif;
+  --color-light: #f0f0f0;
+  --color-dark-overlay: rgba(0, 0, 0, 0.45);
+  --color-accent: #2c3e50;
+}
+
+/* Reset Dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Styling untuk Cover Pembuka */
+/* Container utama yang menutupi seluruh layar */
+#invitation-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  /* Tetap gunakan flex untuk menengahkan tombol */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* ... sisa styling latar belakang Anda ... */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("assets/images/cover.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* POSISI NAMA TAMU (DI BAWAH) */
+
+/* POSISI TOMBOL (TETAP DI TENGAH) */
+#open-invitation-btn {
+  /* Tombol akan otomatis berada di tengah karena parent-nya (#invitation-cover) menggunakan flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: transparent;
+  border: none; /* Lebih baik pakai border agar terlihat */
+  color: var(--color-light);
+
+  padding: 1.5rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0; /* Tetap sembunyikan di awal */
+
+  /* Menjalankan DUA animasi secara berurutan */
+  animation: 
+    /* Animasi 1: Muncul dari bawah (berjalan sekali) */ fadeInUp
+    1s ease-out 1s forwards;
+}
+
+#open-invitation-btn i {
+  /* Aturan yang sudah ada (font-size & margin-bottom) biarkan saja */
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+
+  /* TAMBAHKAN INI: Jalankan animasi bounce hanya pada ikon */
+  animation: cta-bounce 2.5s ease-in-out 2s infinite;
+}
+
+#open-invitation-btn:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Jangan lupa class hidden untuk transisi */
+#invitation-cover.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease, visibility 1.5s ease;
+}
+
+/* KUNCI EFEK PARALLAX PADA BODY */
+body {
+  font-family: var(--font-body);
+  background-image: url("assets/images/cover.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+/* Lapisan Gelap di Atas Background */
+.parallax-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-dark-overlay);
+  z-index: 0;
+}
+
+/* Penataan Konten agar di atas overlay */
+header,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* SECTION HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--color-light);
+}
+
+#hero .intro-text {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInDown 1.2s ease-out 0.5s forwards;
+}
+
+#hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-weight: 700;
+  margin: 0.5rem 0;
+  opacity: 0;
+  animation: scaleUp 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1s forwards;
+}
+
+#hero .hero-date {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out 1.5s forwards;
+}
+
+/* GAYA NAMA TAMU (POSISI HORIZONTAL & PASTI DI TENGAH) */
+.guest-display-style {
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  color: var(--color-light);
+  pointer-events: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out 2s forwards;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.guest-display-style.is-hidden {
+  opacity: 0;
+  transform: translateY(100%); /* Geser ke bawah hingga hilang */
+}
+.guest-display-style i {
+  font-size: 1.5rem;
+  transform-origin: center bottom;
+  animation: feather-float 3s infinite ease-in-out;
+}
+
+.guest-display-style .guest-text {
+  text-align: left;
+}
+
+.guest-display-style p {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 0.1rem;
+}
+
+.guest-display-style h2 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ==================================
+   MAIN CONTENT & SECTIONS
+   ================================== */
+
+#content {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+}
+
+.content-section {
+  max-width: 700px;
+  margin: 0 auto 20vh auto; /* Jarak antar section */
+  padding: 0 2rem;
+  color: var(--color-light);
+}
+
+/* Gaya khusus untuk Section Kutipan */
+#quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+}
+
+#quote::before {
+  content: "“";
+  font-family: "Playfair Display", serif;
+  font-size: 6rem;
+  color: var(--color-light);
+  opacity: 0;
+  line-height: 1;
+  text-shadow: none;
+  transition: opacity 1s ease-out 0.2s;
+}
+
+#quote.is-visible::before {
+  opacity: 0.2;
+}
+
+.quote-content {
+  padding-top: 1rem;
+}
+
+#quote blockquote {
+  font-family: "Quicksand", sans-serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  line-height: 1.8;
+  font-weight: 500;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  text-align: left;
+}
+
+#quote blockquote span {
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+#quote.is-visible blockquote span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#quote.is-visible blockquote span:nth-child(1) {
+  transition-delay: 0.4s;
+}
+#quote.is-visible blockquote span:nth-child(2) {
+  transition-delay: 0.6s;
+}
+#quote.is-visible blockquote span:nth-child(3) {
+  transition-delay: 0.8s;
+}
+#quote.is-visible blockquote span:nth-child(4) {
+  transition-delay: 1s;
+}
+
+#quote cite {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: right;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 1s ease-out 1.5s;
+}
+
+#quote.is-visible cite {
+  opacity: 1;
+}
+
+/* SECTION PROFIL MEMPELAI (GAYA BARU) */
+/* Styling Tumpukan Kartu (Tidak ada perubahan) */
+.interactive-stack-container {
+  position: relative;
+  width: 280px;
+  height: 350px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+#couple h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-light);
+}
+.couple-card {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+
+  /* === DI SINI PENGATURANNYA === */
+  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1),
+    /* Gerakan kartu lebih lambat & dramatis */ filter 0.8s ease-in-out; /* Perubahan kecerahan sedikit lebih cepat */
+}
+.couple-social-link {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  background-color: rgba(44, 62, 80, 0.4);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: background-color 0.4s ease; /* Transisi untuk opacity bisa dihapus */
+}
+
+/* Efek hover pada tombol itu sendiri */
+.couple-social-link:hover {
+  background-color: #e1306c; /* Warna khas Instagram */
+}
+.couple-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.couple-card {
+  transform: translateX(12%) translateY(12%) scale(0.95);
+  z-index: 1;
+  filter: brightness(0.9);
+}
+.couple-card.is-active {
+  transform: none;
+  z-index: 2;
+  filter: brightness(1);
+}
+
+/* === UPDATED: Styling untuk Kontainer Informasi === */
+.couple-info-container {
+  display: flex; /* Gunakan flexbox untuk layout berdampingan */
+  position: relative;
+  justify-content: center; /* Beri jarak antar info */
+  flex-wrap: wrap;
+  gap: 2rem 4rem;
+  max-width: 600px; /* Batasi lebar agar rapi */
+  margin: 4.5rem auto 0; /* Jarak dari kartu di atas */
+  background-color: rgba(44, 62, 80, 0.4);
+  /* Permintaan border tipis */
+  border: 1px solid var(--color-light);
+  border-radius: 12px; /* Samakan dengan lengkungan kartu */
+  padding: 1.5rem; /* Beri ruang di dalam border */
+}
+
+/* Styling untuk setiap blok info (Pria & Wanita) */
+.person-info {
+  flex: 1;
+  text-align: center;
+}
+
+.person-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.person-info p {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-light);
+}
+.couple-separator {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-light);
+  opacity: 0.5;
+  text-align: center;
+
+  /* Beri jarak horizontal dari blok info */
+}
+
+/* Animasi Masuk Section (Tidak ada perubahan) */
+/* Styling Animasi Masuk Section yang Diperbarui */
+
+.interactive-stack-container,
+.couple-info-container {
+  opacity: 0;
+  transform: translateY(30px);
+  /* DURASI DIBUAT LEBIH LAMBAT (1.8 detik) & Easing diatur */
+  transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+}
+
+#couple.is-visible .interactive-stack-container {
+  opacity: 1;
+  transform: translateY(0);
+  /* DELAY KARTU: Tetap mulai duluan */
+  transition-delay: 0.2s;
+}
+#couple.is-visible .couple-info-container {
+  opacity: 1;
+  transform: translateY(0);
+  /* DELAY TEKS: Diberi jeda lebih panjang agar menunggu kartu */
+  transition-delay: 0.8s;
+}
+/* ==================================
+   SECTION DETAIL ACARA
+   ================================== */
+
+#event h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-light);
+}
+#event #countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem; /* Beri jarak ke kartu acara di bawahnya */
+  color: var(--color-light);
+
+  /* State awal untuk animasi masuk */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+/* Atur animasi masuknya */
+#event.is-visible #countdown {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s; /* Countdown muncul paling pertama di section ini */
+}
+
+#countdown .countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 60px;
+}
+
+#countdown .countdown-item span {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 8vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+#countdown .countdown-item p {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+/* Sesuaikan delay animasi kartu acara agar muncul setelah countdown */
+#event.is-visible .event-card:nth-child(1) {
+  transition-delay: 0.4s; /* Sebelumnya 0.3s */
+}
+#event.is-visible .event-card:nth-child(2) {
+  transition-delay: 0.7s; /* Sebelumnya 0.6s */
+}
+
+.event-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Membuat kartu sama tinggi */
+  gap: 2rem;
+  flex-wrap: wrap; /* Agar responsif di layar kecil */
+}
+
+.event-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  border: 1px solid rgba(240, 240, 240, 0.5);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-light);
+  background-color: rgba(44, 62, 80, 0.4);
+  display: flex;
+  flex-direction: column;
+
+  /* State awal untuk animasi masuk */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+/* Animasi masuk dengan delay berbeda */
+#event.is-visible .event-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+#event.is-visible .event-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+
+.event-icon {
+  font-size: 2.5rem;
+  color: var(--color-light);
+  margin-bottom: 1.5rem;
+}
+
+.event-details {
+  flex-grow: 1; /* Mendorong tombol ke bawah */
+}
+
+.event-details h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.event-time {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.event-location {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+
+.event-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-light);
+  border-radius: 50px;
+  color: var(--color-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--color-light);
+  color: #2c3e50;
+}
+
+.btn i {
+  margin-right: 0.5rem;
+}
+/* ==================================
+   SECTION CERITA CINTA (TIMELINE)
+   ================================== */
+
+#story h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  text-align: center;
+  margin-bottom: 4rem;
+  color: var(--color-light);
+}
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Garis vertikal di tengah timeline */
+.timeline-container::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background-color: rgba(240, 240, 240, 0.3);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px; /* Setengah dari lebar garis */
+}
+
+/* Setiap item/poin dalam timeline */
+.timeline-item {
+  padding: 1rem 3rem;
+  position: relative;
+  width: 50%;
+
+  /* State awal untuk animasi */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* Lingkaran pada garis timeline untuk setiap item */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-light);
+  border: 3px solid #5a728a; /* Warna lebih gelap untuk kontras */
+  border-radius: 50%;
+  top: 30px;
+  z-index: 1;
+}
+
+/* Mengatur posisi item KIRI */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+.timeline-item:nth-child(odd)::after {
+  right: -8px; /* Setengah dari lebar lingkaran */
+}
+
+/* Mengatur posisi item KANAN */
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+.timeline-item:nth-child(even)::after {
+  left: -8px; /* Setengah dari lebar lingkaran */
+}
+
+/* Konten di dalam setiap item */
+.timeline-content {
+  padding: 1.5rem;
+  background-color: rgba(44, 62, 80, 0.4); /* Warna semi-transparan */
+  border: 1px solid rgba(240, 240, 240, 0.2);
+
+  border-radius: 12px;
+  position: relative;
+}
+
+.timeline-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-light);
+}
+
+.timeline-content .timeline-date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+.timeline-content p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-light);
+}
+
+/* Animasi saat section terlihat */
+#story.is-visible .timeline-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay animasi agar muncul satu per satu */
+#story.is-visible .timeline-item:nth-child(1) {
+  transition-delay: 0.2s;
+}
+#story.is-visible .timeline-item:nth-child(2) {
+  transition-delay: 0.4s;
+}
+#story.is-visible .timeline-item:nth-child(3) {
+  transition-delay: 0.6s;
+}
+#story.is-visible .timeline-item:nth-child(4) {
+  transition-delay: 0.8s;
+}
+/* ... tambahkan jika milestone lebih dari 4 ... */
+/* ==================================
+   SECTION GALERI FOTO (FINAL)
+   ================================== */
+
+#gallery.content-section {
+  max-width: 100%; /* Ini sudah benar dari sebelumnya */
+}
+
+#gallery h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-light);
+}
+.filmstrip-track {
+  /* Track ini yang sekarang menjadi flex container dan digerakkan */
+  display: flex;
+}
+.filmstrip-container {
+  width: 100%; /* <-- KUNCI PERBAIKAN DITAMBAHKAN DI SINI */
+  overflow-y: hidden;
+  padding: 1rem 0;
+  scroll-behavior: smooth; /* Membuat lompatan ke awal lebih mulus */
+
+  /* Styling untuk scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 240, 240, 0.4) transparent;
+}
+
+.filmstrip-container::-webkit-scrollbar {
+  height: 8px;
+}
+.filmstrip-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.filmstrip-container::-webkit-scrollbar-thumb {
+  background-color: rgba(240, 240, 240, 0.4);
+  border-radius: 10px;
+}
+
+.filmstrip-item {
+  flex-shrink: 0;
+  width: 60%;
+  max-width: 300px;
+  margin: 0 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.filmstrip-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease-out;
+}
+.filmstrip-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Animasi masuk berurutan (tetap sama) */
+#gallery.is-visible .filmstrip-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+#gallery.is-visible .filmstrip-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+#gallery.is-visible .filmstrip-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+#gallery.is-visible .filmstrip-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+#gallery.is-visible .filmstrip-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+#gallery.is-visible .filmstrip-item:nth-child(5) {
+  transition-delay: 0.5s;
+}
+#gallery.is-visible .filmstrip-item:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Styling untuk Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+/* ==================================
+   SECTION RSVP & WISHES
+   ================================== */
+#rsvp {
+  /* State awal animasi */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+#rsvp.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#rsvp h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  /* ...styling lain sama... */
+}
+.rsvp-subheading {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.rsvp-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid rgba(240, 240, 240, 0.5);
+  border-radius: 16px;
+  background-color: rgba(44, 62, 80, 0.4);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: var(--font-body);
+}
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--color-light);
+  color: #2c3e50;
+  border: none;
+}
+.submit-btn:hover {
+  background-color: #fff;
+  transform: scale(1.02);
+}
+.submit-btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+#form-status {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* Styling untuk daftar ucapan */
+.wishes-container {
+  max-width: 600px;
+  margin: 3rem auto 0 auto;
+}
+.wishes-container h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-family: var(--font-heading);
+}
+.wishes-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 1rem;
+  border-left: 2px solid rgba(240, 240, 240, 0.3);
+  padding-left: 1.5rem;
+}
+.wish-card {
+  padding: 1rem;
+  background-color: rgba(44, 62, 80, 0.4);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.wish-card .wish-name {
+  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+}
+.wish-card .wish-date {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-left: 0.5rem;
+}
+.wish-card .wish-text {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+/* ==================================
+   SECTION WEDDING GIFT
+   ================================== */
+
+#gift {
+  /* State awal animasi */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+#gift.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#gift h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  /* ...styling lain sama... */
+}
+
+.gift-intro {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.gift-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gift-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(240, 240, 240, 0.5);
+  border-radius: 16px;
+  background-color: rgba(44, 62, 80, 0.4);
+}
+
+.gift-icon i {
+  font-size: 2rem;
+  color: var(--color-light);
+  width: 40px;
+  text-align: center;
+}
+
+.gift-details {
+  flex-grow: 1;
+}
+
+.account-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.account-number {
+  font-size: 1rem;
+  margin: 0.25rem 0;
+  word-wrap: break-word; /* Agar alamat panjang bisa wrap */
+}
+
+.account-holder {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--color-light);
+  background-color: transparent;
+  color: var(--color-light);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  background-color: var(--color-light);
+  color: var(--color-accent);
+}
+
+/* State saat berhasil disalin */
+.copy-btn.copied {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  color: white;
+}
+/* ==================================
+   SECTION PENUTUP (CLOSING)
+   ================================== */
+
+#closing {
+  /* Menggunakan min-height agar section memenuhi layar */
+  min-height: 90vh;
+
+  /* Menghapus max-width dari .content-section agar bisa full-screen */
+  max-width: 90%;
+  padding: 0;
+
+  /* Menempatkan konten di tengah */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Latar belakang foto dengan overlay gelap */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("assets/images/prewedding-penutup.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efek parallax */
+
+  /* State awal animasi */
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+}
+
+#closing.is-visible {
+  opacity: 1;
+}
+
+.closing-content {
+  text-align: center;
+  color: var(--color-light);
+  max-width: 600px; /* Batasi lebar teks agar mudah dibaca */
+  padding: 2rem;
+}
+
+.closing-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.closing-content h3 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+/* ==================================
+   TOMBOL KONTROL MUSIK
+   ================================== */
+/* ==================================
+   TOMBOL KONTROL MUSIK
+   ================================== */
+#music-toggle-btn {
+  /* Posisi Tetap di Pojok Kanan Bawah */
+  position: fixed;
+  bottom: 1.5rem;
+  right: 2rem;
+  z-index: 999;
+
+  /* Tampilan Tombol (Lingkaran) */
+  width: 50px;
+  height: 50px;
+
+  color: #f0f0f0;
+  border-radius: 50%;
+
+  /* Menengahkan Ikon di Dalam Lingkaran */
+  display: none; /* Awalnya disembunyikan, muncul via JS */
+  justify-content: center;
+  align-items: center;
+
+  /* Efek Tambahan */
+  font-size: 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+#music-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Animasi berputar untuk ikon */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Terapkan animasi hanya saat musik 'playing' */
+#music-toggle-btn.playing .fas {
+  animation: spin 4s linear infinite;
+}
+/* ==================================
+   FOOTER (GAYA BARU)
+   ================================== */
+#page-footer {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  padding: 1rem 1rem 1rem 1rem;
+  color: var(--color-light);
+  background-color: rgba(44, 62, 80, 0.9);
+}
+
+.socials {
+  margin-bottom: 1rem;
+}
+
+.socials a {
+  font-size: 1.8rem;
+  color: var(--color-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.socials a:hover {
+  color: #e74c3c; /* Warna aksen hover */
+}
+
+.credit {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.credit .fas.fa-heart {
+  color: #e74c3c;
+  margin: 0 0.25rem;
+}
+
+/* Responsif untuk galeri */
+@media (max-width: 992px) {
+  .gallery-grid {
+    column-count: 2;
+  } /* 2 kolom di tablet */
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    column-count: 1;
+  } /* 1 kolom di mobile */
+}
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+  .timeline-container::after {
+    left: 20px; /* Pindahkan garis ke kiri */
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px; /* Beri ruang dari garis */
+    padding-right: 1rem;
+    text-align: left !important;
+  }
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+  .timeline-item::after {
+    left: 12px !important; /* Posisikan lingkaran di atas garis */
+  }
+  #open-invitation-btn {
+    /* Atur kembali jarak atas untuk tampilan desktop */
+    margin-top: 30rem;
+  }
+
+  #open-invitation-btn i {
+    /* Opsional: Sedikit perbesar ikon di desktop agar proporsional */
+    font-size: 3rem;
+  }
+}
+/* Responsif untuk mobile */
+@media (max-width: 600px) {
+  .couple-info-container {
+    flex-direction: column; /* Tumpuk info secara vertikal di layar kecil */
+    gap: 1.5rem;
+  }
+}
+/* ==================================
+   RESEP ANIMASI
+   ================================== */
+@keyframes feather-float {
+  0% {
+    transform: translateY(0) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(5deg);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Resep untuk animasi call-to-action yang berulang */
+@keyframes cta-bounce {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  20% {
+    /* Jatuh sedikit */
+    transform: translateY(5px) rotate(0);
+  }
+  40% {
+    /* Terangkat sambil miring */
+    transform: translateY(-15px) rotate(-5deg);
+  }
+  60% {
+    /* Jatuh kembali ke posisi normal */
+    transform: translateY(0) rotate(0);
+  }
+  80% {
+    /* Sedikit memantul */
+    transform: translateY(-5px) rotate(0);
+  }
+  100% {
+    /* Kembali ke posisi awal */
+    transform: translateY(0) rotate(0);
+  }
+}
