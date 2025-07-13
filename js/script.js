@@ -11,7 +11,52 @@ document.addEventListener("DOMContentLoaded", () => {
       this.initHeroSlider();
       this.initDetailSlider();
       this.initFaqAccordion();
+      this.initOrderModal();
     },
+    initOrderModal() {
+      const orderButtons = document.querySelectorAll(".btn-order");
+      const modalOverlay = document.getElementById("order-modal-overlay");
+      const closeModalBtn = document.getElementById("close-modal-btn");
+
+      // Elemen link di dalam modal
+      const modalWaLink = document.getElementById("modal-wa-link");
+      const modalShopeeLink = document.getElementById("modal-shopee-link");
+
+      // Jika tidak ada modal di halaman ini, hentikan fungsi
+      if (!modalOverlay) return;
+
+      // Fungsi untuk membuka modal
+      const openModal = (e) => {
+        const button = e.currentTarget;
+        const waLink = button.dataset.waLink;
+        const shopeeLink = button.dataset.shopeeLink;
+
+        // Update link di dalam modal sesuai data dari tombol yang di-klik
+        modalWaLink.href = waLink;
+        modalShopeeLink.href = shopeeLink;
+
+        modalOverlay.classList.add("active");
+      };
+
+      // Fungsi untuk menutup modal
+      const closeModal = () => {
+        modalOverlay.classList.remove("active");
+      };
+
+      // Tambahkan event listener ke setiap tombol "Pesan" yang ada di halaman
+      orderButtons.forEach((button) => {
+        button.addEventListener("click", openModal);
+      });
+
+      // Event listener untuk tombol close (x) dan area gelap di luar modal
+      closeModalBtn.addEventListener("click", closeModal);
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+    },
+
     initDetailSlider() {
       const slider = document.querySelector(".product-slider");
       if (!slider) return; // Hanya berjalan jika ada slider produk
