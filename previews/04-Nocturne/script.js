@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       shortName: "Ardi",
       fullName: "Ardi Pratama, S.Kom.",
       parents: "Putra Kedua dari Bapak H. Subagyo & Ibu Hj. Ibu Hj. Lestari",
-      photo: "assets/images/mempelai-pria.jpg",
+      photo: "assets/images/mempelai-pria.png",
       instagram:
         "https://www.instagram.com/temuhati.kita?igsh=dmZ4cGJyMmZmZzM2",
     },
@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
       shortName: "Rania",
       fullName: "Rania Safitri, S.E.",
       parents: "Putri Kedua dari Bapak Drs. Endang Wijaya & Ibu Amalia, S.Pd.",
-      photo: "assets/images/mempelai-wanita.jpg",
+      photo: "assets/images/mempelai-wanita.png",
       instagram:
         "https://www.instagram.com/temuhati.kita?igsh=dmZ4cGJyMmZmZzM2",
     },
 
     backgrounds: {
-      hero: "assets/images/cover.jpg",
-      vow: "assets/images/cover.jpg",
-      closing: "assets/images/prewedding-penutup.jpg",
+      hero: "assets/images/cover.png",
+      vow: "assets/images/cover.png",
+      closing: "assets/images/penutup.png",
     },
 
     vow: {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     event: {
       countdownDate: "2025-12-01T08:00:00",
-      photo: "assets/images/prewedding-penutup.jpg",
+      photo: "assets/images/save-date.png",
       details: [
         {
           title: "Akad Nikah",
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           venue: "Masjid Agung Nocturne, Jakarta",
           address:
             "The Vow Premiere Venue, Jalan Kenangan Manis Blok C No. 7, Bandung",
-          gmapsUrl: "https://maps.app.goo.gl/4KLKjy1T3RQVnkEKA",
+          gmapsUrl: "https://maps.app.goo.gl/FFHBLjHzhccGQCG88",
         },
         {
           title: "Syukuran Resepsi",
@@ -60,18 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
           venue: "Grand Ballroom Nocturne, Jakarta",
           address:
             "The Vow Premiere Venue, Jalan Kenangan Manis Blok C No. 7, Bandung",
-          gmapsUrl: "https://maps.app.goo.gl/4KLKjy1T3RQVnkEKA",
+          gmapsUrl: "https://maps.app.goo.gl/FFHBLjHzhccGQCG88",
         },
       ],
     },
 
     gallery: [
-      "assets/images/galeri-1.jpg",
-      "assets/images/galeri-2.jpg",
-      "assets/images/galeri-3.jpg",
-      "assets/images/galeri-4.jpg",
-      "assets/images/galeri-5.jpg",
-      "assets/images/galeri-2.jpg",
+      "assets/images/galeri-1.png",
+      "assets/images/galeri-2.png",
+      "assets/images/galeri-3.png",
+      "assets/images/galeri-4.png",
+      "assets/images/galeri-5.png",
+      "assets/images/galeri-6.png",
     ],
 
     weddingGift: {

@@ -17,24 +17,24 @@ const CLIENT_DATA = {
     waktuTeks: "08.00 WIB - Selesai",
     lokasi:
       "The Vow Premiere Venue, Jalan Kenangan Manis Blok C No. 7, Bandung",
-    urlPeta: "https://maps.app.goo.gl/LOKASI_ANDA",
+    urlPeta: "https://maps.app.goo.gl/FFHBLjHzhccGQCG88",
   },
 
   // ... (Sisa data lain biarkan seperti kodemu yang sekarang) ...
-  fotoPria: "assets/images/mempelai-pria.jpg",
-  fotoWanita: "assets/images/mempelai-wanita.jpg",
-  fotoPenutup: "assets/images/prewedding-penutup.jpg",
+  fotoPria: "assets/images/mempelai-pria.png",
+  fotoWanita: "assets/images/mempelai-wanita.png",
+  fotoPenutup: "assets/images/prewedding-penutup.png",
   heroImages: {
-    cover: "assets/images/cover.jpg",
-    slideshow: ["assets/images/galeri-1.jpg", "assets/images/galeri-2.jpg"],
+    cover: "assets/images/cover.png",
+    slideshow: ["assets/images/galeri-1.png", "assets/images/galeri-2.png"],
   },
   backgrounds: {
-    kutipan: "assets/images/galeri-3.jpg",
-    mempelai: "assets/images/galeri-4.jpg",
-    saveTheDate: "assets/images/galeri-5.jpg",
-    loveStory: "assets/images/galeri-6.jpg",
-    weddingGift: "assets/images/galeri-2.jpg",
-    penutup: "assets/images/prewedding-penutup.jpg",
+    kutipan: "assets/images/galeri-3.png",
+    mempelai: "assets/images/galeri-4.png",
+    saveTheDate: "assets/images/galeri-5.png",
+    loveStory: "assets/images/galeri-6.png",
+    weddingGift: "assets/images/galeri-2.png",
+    penutup: "assets/images/prewedding-penutup.png",
   },
   instagramPria:
     "https://www.instagram.com/temuhati.kita?igsh=dmZ4cGJyMmZmZzM2",
@@ -65,12 +65,12 @@ const CLIENT_DATA = {
     },
   ],
   galeri: [
-    "assets/images/galeri-1.jpg",
-    "assets/images/galeri-2.jpg",
-    "assets/images/galeri-3.jpg",
-    "assets/images/galeri-4.jpg",
-    "assets/images/galeri-5.jpg",
-    "assets/images/galeri-6.jpg",
+    "assets/images/galeri-1.png",
+    "assets/images/galeri-2.png",
+    "assets/images/galeri-3.png",
+    "assets/images/galeri-4.png",
+    "assets/images/galeri-5.png",
+    "assets/images/galeri-6.png",
   ],
   hadiah: [
     {
@@ -86,7 +86,7 @@ const CLIENT_DATA = {
       atasNama: "a.n. Rania Safitri",
     },
   ],
-  musik: "assets/audio/laksanasurga.mp3",
+  musik: "assets/audio/Kina Grannis - Can't Help Falling In Love.mp3",
   ucapanPenutup:
     "Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu. Atas kehadiran dan doa restunya, kami ucapkan terima kasih.",
   backend: {
